@@ -1,14 +1,6 @@
-# Myke Xardan Portfolio — React + Tailwind
+# Myke Xardan Portfolio
 
-V2 is the main visual design, rebuilt as a standard Vite React application. Assets and portfolio content are migrated from V1.
-
-## Stack
-
-- React 19
-- TypeScript
-- Vite 7
-- Tailwind CSS 4
-- Lucide React
+Client-ready portfolio built with React, TypeScript, Vite, and Tailwind CSS 4.
 
 ## Run locally
 
@@ -21,9 +13,10 @@ npm run dev
 
 ```bash
 npm run build
-npm run preview
 ```
 
-## Styling
+Vite outputs to `dist/`. A `vercel.json` is included so Vercel uses the correct output directory.
 
-The interface is built directly with Tailwind utility classes. `src/index.css` only loads Tailwind, enables the class-based dark variant, and turns on smooth scrolling.
+## Main content
+
+Edit `src/App.tsx` for projects, services, experience, skills, and testimonials. See `PORTFOLIO-FILL-ME.md` for the remaining optional content to add later.
