@@ -3,6 +3,9 @@ import {
   ArrowDownToLine,
   ArrowUpRight,
   Check,
+  ChevronDown,
+  ChevronLeft,
+  ChevronRight,
   Code2,
   Github,
   Mail,
@@ -21,6 +24,8 @@ type Project = {
   title: string;
   type: string;
   description: string;
+  // Use images for the carousel. image remains as a backwards-compatible fallback.
+  images?: readonly string[];
   image?: string;
   tags: readonly string[];
   challenge?: string;
@@ -28,9 +33,11 @@ type Project = {
   outcomes?: readonly string[];
   status?: string;
   featured?: boolean;
+  privateProject?: boolean;
   privacyNote?: string;
   liveUrl?: string;
   repoUrl?: string;
+  caseStudyUrl?: string;
 };
 
 type Service = {
@@ -84,38 +91,60 @@ type TrustPoint = {
 const projects: readonly Project[] = [
   {
     number: "01",
-    title: "Microfinance Management Platform",
-    type: "Enterprise financial system",
+    title: "DUNAMIS Kabalikat",
+    type: "Enterprise Microfinance Management Platform",
+
     description:
-      "A long-running internal platform supporting microfinance operations across loan processing, collections, client management, reporting, notifications, and branch-level workflows.",
+      "A large-scale microfinance management platform supporting client management, loan processing, collections, reporting, branch operations, and internal business workflows.",
+
+    // Replace this later with your sanitized screenshot.
+    images: [
+      "/assets/project-mf-1.jpg",
+      "/assets/project-mf-2.jpg",
+      "/assets/project-mf-3.jpg",
+    ],
+
     tags: [
       "Angular",
       ".NET",
+      "C#",
       "SQL Server",
+      "MongoDB",
       "Dapper",
       "SignalR",
+      "Stimulsoft",
+      "EPPlus",
+      "Postman",
       "AWS",
-      "Tailwind CSS",
     ],
+
     challenge:
-      "Support complex, multi-role financial workflows while keeping daily operations reliable, consistent, and maintainable as the platform continues to evolve.",
+      "The platform supports complex microfinance operations across multiple roles and branches, requiring reliable frontend workflows, backend services, database integrations, reporting, real-time communication, and deployment processes.",
+
     contribution: [
-      "Contributed to the platform across three years of active development",
-      "Built and redesigned Angular modules for loan, collection, client, reporting, and operational workflows",
-      "Developed and maintained .NET APIs, services, models, stored-procedure integrations, and selected Dapper data-access flows",
-      "Implemented role- and branch-aware real-time notifications with SignalR",
-      "Improved reporting workflows with browser-based PDF and Excel preview experiences",
-      "Investigated staging, deployment, database, configuration, and performance issues across the stack",
+      "Contributed to the development and maintenance of the platform for over three years.",
+      "Developed and maintained REST APIs and backend services using .NET and C#.",
+      "Enhanced and redesigned Angular interfaces across operational modules.",
+      "Worked with SQL Server and MongoDB for application data workflows and integrations.",
+      "Built reports using Stimulsoft and Excel generation workflows using EPPlus.",
+      "Implemented real-time notification workflows using SignalR.",
+      "Documented, tested, and validated APIs using Postman.",
+      "Supported CI/CD deployments and staging environments through AWS.",
     ],
+
     outcomes: [
-      "Introduced more consistent, reusable UI patterns across complex operational modules",
-      "Improved maintainability by simplifying selected frontend and backend implementation patterns",
-      "Supported clearer staff workflows around reporting, notifications, lending, and collections",
+      "Improved consistency and usability across major application modules.",
+      "Supported reliable workflows across frontend, backend, database, reporting, and deployment layers.",
+      "Introduced reusable UI patterns across the application.",
     ],
-    status: "3 years contributing",
-    featured: true,
+
+    status: "Private enterprise system",
+    privateProject: true,
     privacyNote:
-      "Internal production system — screenshots, source code, and live access are intentionally not public.",
+      "This is an internal production system. Portfolio screenshots should use sanitized or demo data only and must not expose client information, credentials, or proprietary implementation details.",
+    liveUrl: "",
+    repoUrl: "",
+    caseStudyUrl: "",
   },
   {
     number: "02",
@@ -123,7 +152,12 @@ const projects: readonly Project[] = [
     type: "Full-stack project",
     description:
       "An earlier scholarship platform where students can submit and track applications while administrators review requirements and manage application records. A modern public rebuild with a live demo is planned.",
-    image: "/assets/project-scholarship.jpg",
+    images: [
+      "/assets/project-scholarship.jpg",
+      // Add more screenshots later, for example:
+      // "/assets/project-scholarship-2.jpg",
+      // "/assets/project-scholarship-3.jpg",
+    ],
     tags: ["PHP", "MySQL", "Bootstrap", "JavaScript"],
     challenge:
       "Bring scholarship applications and administrative review into one organized workflow instead of relying on disconnected manual steps.",
@@ -141,11 +175,63 @@ const projects: readonly Project[] = [
   },
   {
     number: "03",
+    title: "Fellowship Group Photo Hub",
+    type: "Event Media & Presentation Tool",
+
+    description:
+      "A lightweight full-stack web application built for a company fellowship event to centralize group photo collection. Participants can upload and browse event photos, while organizers can generate a PDF output that makes the collected media easier to prepare for presentation.",
+
+    images: [
+      "/assets/project-group-photo-1.jpg",
+      "/assets/project-group-photo-2.jpg",
+      "/assets/project-group-photo-3.jpg",
+    ],
+
+    tags: [
+      "Next.js",
+      "React",
+      "TypeScript",
+      "Next.js API Routes",
+      "PDF Generation",
+      "Vercel",
+    ],
+
+    challenge:
+      "Collecting photos from multiple fellowship groups and preparing them for presentation would otherwise require organizers to manually gather, sort, and organize files from different participants and sources.",
+
+    contribution: [
+      "Designed and developed the application using Next.js, React, and TypeScript.",
+      "Built a centralized upload workflow for fellowship groups and participants.",
+      "Implemented a gallery for browsing and reviewing submitted event photos.",
+      "Created server-side API functionality using Next.js API routes.",
+      "Implemented PDF generation to simplify preparation of collected photos for presentation.",
+      "Structured the system around the organizers' existing presentation workflow.",
+      "Deployed the application through Vercel for use during the company fellowship event.",
+    ],
+
+    outcomes: [
+      "Provided one centralized place for collecting photos from multiple groups.",
+      "Reduced the manual effort required to gather and organize event media.",
+      "Made submitted photos easier to prepare for presentation during the event.",
+      "Created a reusable workflow for similar company events.",
+    ],
+
+    status: "Used at company event",
+
+    liveUrl: "https://group-photo.vercel.app",
+    repoUrl: "",
+    caseStudyUrl: "",
+  },
+  {
+    number: "04",
     title: "Personal Portfolio",
     type: "React portfolio experience",
     description:
       "A responsive portfolio built to present real project work, technical experience, services, and case-study context through a focused client-facing interface.",
-    image: "/assets/project-portfolio.png",
+    images: [
+      "/assets/Project Pictures/project-portfolio.png",
+      // Add more portfolio screenshots here when needed.
+    ],
     tags: ["React", "Tailwind CSS", "TypeScript", "Vite"],
     challenge:
       "Turn several years of project work into a portfolio that clients and recruiters can understand quickly without overwhelming them with implementation details.",
@@ -163,12 +249,15 @@ const projects: readonly Project[] = [
     repoUrl: "https://github.com/Rylaii/Portfolio_Myke",
   },
   {
-    number: "04",
+    number: "05",
     title: "LGU Gonzaga Web Platform",
     type: "Public service website",
     description:
       "Municipal web experiences covering a responsive public landing page and an authenticated entry point for internal services.",
-    image: "/assets/project-lgu-landing.jpg",
+    images: [
+      "/assets/project-lgu-landing.jpg",
+      "/assets/project-lgu-login.jpg",
+    ],
     tags: ["PHP", "MySQL", "Bootstrap", "JavaScript"],
     challenge:
       "Make public information easier to access while providing a straightforward, controlled sign-in experience for authorized users.",
@@ -198,7 +287,7 @@ const services: readonly Service[] = [
   },
   {
     number: "02",
-    title: "Angular UI engineering",
+    title: "Angular/React UI engineering",
     description:
       "I turn dense operational requirements into structured Angular screens with reusable components, clear states, validation, and responsive behavior.",
     deliverables: [
@@ -237,27 +326,51 @@ const services: readonly Service[] = [
 const experiences: readonly Experience[] = [
   {
     number: "01",
-    role: "Junior Backend Developer",
-    company: "Microfinance Organization",
-    period: "3 years of active development",
+    role: "Full-Stack Developer",
+    company: "DUNAMIS Kabalikat",
+    period: "2023 — Present",
+
     summary:
-      "Contributing to a production microfinance platform used across day-to-day operational workflows. My work regularly crosses frontend, backend, database, reporting, realtime communication, and deployment troubleshooting.",
+      "Contributing to the development, maintenance, and continuous improvement of a large-scale microfinance management platform, working across frontend interfaces, backend APIs, SQL Server and MongoDB data workflows, reporting, system integrations, cloud deployments, and technical documentation.",
+
     highlights: [
-      "Developed and enhanced Angular modules for lending, collections, client management, reporting, and related workflows",
-      "Built and maintained .NET APIs and SQL Server integrations, including selected Dapper-based data access",
-      "Implemented role-aware SignalR notifications and PDF / Excel report preview and export flows",
-      "Investigated staging and deployment issues involving IIS, SQL Server permissions, AWS pipelines, ports, and environment configuration",
+      "Develop and maintain REST APIs and backend services supporting core microfinance workflows.",
+
+      "Enhance and redesign Angular-based user interfaces to improve usability, responsiveness, and consistency across business modules.",
+
+      "Work with SQL Server and MongoDB for application data management, querying, troubleshooting, and backend integration.",
+
+      "Develop and maintain SQL Server stored procedures, queries, and data-access workflows using Entity Framework and Dapper.",
+
+      "Build and maintain operational and financial reports using Stimulsoft Reports.",
+
+      "Generate and process Excel reports and exports using EPPlus.",
+
+      "Document, test, and validate APIs using Postman for internal development and system integrations.",
+
+      "Integrate internal and external APIs across different business modules and operational workflows.",
+
+      "Support CI/CD deployments and staging environments through AWS deployment pipelines.",
+
+      "Investigate and resolve frontend, backend, database, reporting, deployment, and production-related issues.",
+
+      "Prepare technical documentation for APIs, integrations, enhancements, deployment procedures, and development workflows.",
     ],
+
     stack: [
       "Angular",
-      "TypeScript",
       ".NET",
       "C#",
       "SQL Server",
+      "MongoDB",
       "Dapper",
-      "SignalR",
+      "Entity Framework",
+      "Stimulsoft",
+      "EPPlus",
+      "Postman",
       "AWS",
-      "Tailwind CSS",
+      "REST APIs",
+      "CI/CD",
     ],
   },
 ];
@@ -311,11 +424,25 @@ const skillGroups: readonly SkillGroup[] = [
   },
   {
     number: "03",
-    title: "Data & tools",
+    title: "Databases & Tools",
+
     skills: [
-      { name: "MySQL", icon: "/assets/skill-mysql.svg" },
+      { name: "SQL Server", icon: "/assets/skill-sqlserver.svg" },
       { name: "MongoDB", icon: "/assets/skill-mongodb.svg" },
+      { name: "MySQL", icon: "/assets/skill-mysql.svg" },
       { name: "Postman", icon: "/assets/skill-postman.svg" },
+      { name: "AWS", icon: "/assets/skill-aws.svg" },
+    ],
+  },
+  {
+    number: "04",
+    title: "Reporting & Integration",
+
+    skills: [
+      { name: "Stimulsoft", icon: "/assets/skill-stimulsoft.svg" },
+      { name: "EPPlus", icon: "/assets/skill-excel.svg" },
+      { name: "REST APIs", icon: "/assets/skill-api.svg" },
+      { name: "SignalR", icon: "/assets/skill-signalr.svg" },
     ],
   },
 ];
@@ -329,192 +456,166 @@ const navItems = [
   ["Contact", "#contact"],
 ] as const;
 
-function ProjectVisual({ project }: { project: Project }) {
-  const hasLink = Boolean(project.liveUrl || project.repoUrl);
-
-  if (project.image) {
-    return (
-      <div
-        className={`${
-          project.featured ? "min-h-[320px] lg:min-h-full" : "aspect-[16/8.2]"
-        } relative overflow-hidden bg-[#dfe5d4]`}
-      >
-        <img
-          src={project.image}
-          alt={`${project.title} project preview`}
-          loading="lazy"
-          className="h-full w-full object-cover transition duration-500 group-hover:scale-[1.025]"
-        />
-        <div className="absolute inset-x-0 top-0 h-28 bg-gradient-to-b from-black/55 to-transparent" />
-        <span className="absolute left-5 top-5 text-[11px] font-bold text-white">
-          {project.number}
-        </span>
-        {hasLink && (
-          <ArrowUpRight
-            className="absolute right-5 top-5 text-white"
-            size={20}
-          />
-        )}
-      </div>
-    );
-  }
-
+function ProjectPlaceholder({ project }: { project: Project }) {
   return (
-    <div
-      className={`${
-        project.featured ? "min-h-[340px] lg:min-h-full" : "aspect-[16/8.2]"
-      } relative overflow-hidden bg-[#111411] text-[#f3f0e8]`}
-    >
+    <div className="relative flex aspect-[16/9] min-h-[250px] flex-col justify-between overflow-hidden bg-[#111411] p-6 text-[#f3f0e8] md:p-7">
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_18%_18%,rgba(215,250,102,0.18),transparent_36%),radial-gradient(circle_at_82%_80%,rgba(152,202,69,0.10),transparent_32%)]" />
       <div className="absolute inset-0 opacity-20 [background-image:linear-gradient(rgba(255,255,255,0.08)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.08)_1px,transparent_1px)] [background-size:32px_32px]" />
 
-      <div className="relative flex h-full min-h-[inherit] flex-col justify-between p-6 md:p-8">
-        <div className="flex items-center justify-between gap-4 text-[9px] font-bold uppercase tracking-[0.16em] text-[#a9ada4]">
-          <span>{project.number} · Internal platform</span>
-          <span className="border border-[#d7fa66]/35 px-2.5 py-1.5 text-[#d7fa66]">
-            Production
-          </span>
-        </div>
+      <div className="relative flex items-center justify-between gap-4 text-[9px] font-bold uppercase tracking-[0.16em] text-[#a9ada4]">
+        <span>{project.number} · Project preview</span>
+        <span className="border border-[#d7fa66]/35 px-2.5 py-1.5 text-[#d7fa66]">
+          {project.privateProject ? "Private" : "Preview"}
+        </span>
+      </div>
 
-        <div className="my-10">
-          <span className="mb-3 block text-[10px] font-bold uppercase tracking-[0.18em] text-[#d7fa66]">
-            Enterprise system
-          </span>
-          <p className="max-w-[540px] text-[clamp(2.1rem,5vw,4.8rem)] font-bold leading-[0.9] tracking-[-0.07em]">
-            MICROFINANCE
-          </p>
-          <p className="mt-5 max-w-[460px] text-[11px] leading-5 text-[#a9ada4]">
-            Angular · .NET · SQL Server · Dapper · SignalR · AWS
-          </p>
-        </div>
+      <div className="relative my-8">
+        <span className="mb-3 block text-[10px] font-bold uppercase tracking-[0.18em] text-[#d7fa66]">
+          {project.type}
+        </span>
+        <p className="max-w-[520px] text-[clamp(1.8rem,4vw,3.5rem)] font-bold leading-[0.94] tracking-[-0.06em]">
+          {project.title}
+        </p>
+        <p className="mt-4 max-w-[430px] text-[10px] leading-5 text-[#a9ada4]">
+          Add or replace screenshots in <strong>public/assets</strong>. If an
+          image is missing, this placeholder is shown automatically.
+        </p>
+      </div>
 
-        <div className="flex flex-wrap items-end justify-between gap-5 border-t border-white/15 pt-5">
-          <div>
-            <span className="block text-[9px] uppercase tracking-[0.15em] text-[#777d74]">
-              Involvement
-            </span>
-            <strong className="mt-1 block text-sm">3 years</strong>
-          </div>
-          <div className="text-right">
-            <span className="block text-[9px] uppercase tracking-[0.15em] text-[#777d74]">
-              Access
-            </span>
-            <strong className="mt-1 block text-sm">Confidential</strong>
-          </div>
-        </div>
+      <div className="relative border-t border-white/15 pt-4 text-[9px] uppercase tracking-[0.14em] text-[#777d74]">
+        {project.privateProject
+          ? "Use sanitized or demo data only"
+          : "Screenshot coming soon"}
       </div>
     </div>
   );
 }
 
-function ProjectDetails({ project }: { project: Project }) {
+function ProjectCarousel({ project }: { project: Project }) {
+  const media =
+    project.images && project.images.length > 0
+      ? project.images
+      : project.image
+        ? [project.image]
+        : [];
+
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [failedImages, setFailedImages] = useState<Set<string>>(
+    () => new Set(),
+  );
+
+  useEffect(() => {
+    setActiveIndex(0);
+  }, [project.number]);
+
+  const goPrevious = () => {
+    if (media.length < 2) return;
+    setActiveIndex((current) =>
+      current === 0 ? media.length - 1 : current - 1,
+    );
+  };
+
+  const goNext = () => {
+    if (media.length < 2) return;
+    setActiveIndex((current) =>
+      current === media.length - 1 ? 0 : current + 1,
+    );
+  };
+
+  const currentImage = media[activeIndex];
+  const currentImageFailed = currentImage
+    ? failedImages.has(currentImage)
+    : true;
+
+  const markImageFailed = (src: string) => {
+    setFailedImages((current) => {
+      const next = new Set(current);
+      next.add(src);
+      return next;
+    });
+  };
+
   return (
-    <div className="p-6 md:p-7 lg:p-8">
-      <div className="mb-3 flex flex-wrap items-center gap-2">
-        <p className="text-[9px] uppercase tracking-[0.13em] text-[#77766e] dark:text-[#9b9d95]">
-          {project.type}
-        </p>
-        {project.status && (
-          <span className="border border-[#98ca45]/40 bg-[#98ca45]/8 px-2 py-1 text-[8px] font-bold uppercase tracking-[0.11em] text-[#668d25] dark:border-[#d7fa66]/30 dark:bg-[#d7fa66]/5 dark:text-[#d7fa66]">
-            {project.status}
-          </span>
+    <div className="min-w-0">
+      <div className="group/carousel relative overflow-hidden border border-[#d8d4ca] bg-[#ebe8df] dark:border-[#363936] dark:bg-[#212420]">
+        {currentImage && !currentImageFailed ? (
+          <div className="aspect-[16/9] overflow-hidden bg-[#dfe5d4] dark:bg-[#111411]">
+            <img
+              key={currentImage}
+              src={currentImage}
+              alt={`${project.title} screenshot ${activeIndex + 1}`}
+              loading="lazy"
+              onError={() => markImageFailed(currentImage)}
+              className="h-full w-full object-cover transition duration-500 group-hover/carousel:scale-[1.015]"
+            />
+          </div>
+        ) : (
+          <ProjectPlaceholder project={project} />
+        )}
+
+        {media.length > 1 && (
+          <>
+            <button
+              type="button"
+              onClick={goPrevious}
+              aria-label={`Previous ${project.title} screenshot`}
+              className="absolute left-3 top-1/2 grid size-9 -translate-y-1/2 cursor-pointer place-items-center border border-white/20 bg-black/55 text-white backdrop-blur-sm transition hover:bg-black/75"
+            >
+              <ChevronLeft size={18} />
+            </button>
+
+            <button
+              type="button"
+              onClick={goNext}
+              aria-label={`Next ${project.title} screenshot`}
+              className="absolute right-3 top-1/2 grid size-9 -translate-y-1/2 cursor-pointer place-items-center border border-white/20 bg-black/55 text-white backdrop-blur-sm transition hover:bg-black/75"
+            >
+              <ChevronRight size={18} />
+            </button>
+
+            <span className="absolute bottom-3 right-3 bg-black/60 px-2.5 py-1.5 text-[9px] font-bold tracking-[0.12em] text-white backdrop-blur-sm">
+              {String(activeIndex + 1).padStart(2, "0")} /{" "}
+              {String(media.length).padStart(2, "0")}
+            </span>
+          </>
         )}
       </div>
 
-      <h3 className="mb-3 text-[24px] font-bold tracking-[-0.045em]">
-        {project.title}
-      </h3>
-      <p className="mb-6 text-[13px] leading-6 text-[#77766e] dark:text-[#9b9d95]">
-        {project.description}
-      </p>
+      {media.length > 1 && (
+        <div className="mt-3 flex gap-2 overflow-x-auto pb-1">
+          {media.map((image, index) => {
+            const isActive = activeIndex === index;
+            const failed = failedImages.has(image);
 
-      {project.challenge && (
-        <div className="mb-6 border-t border-[#d8d4ca] pt-5 dark:border-[#363936]">
-          <span className="mb-2 block text-[9px] font-bold uppercase tracking-[0.14em] text-[#98ca45] dark:text-[#d7fa66]">
-            Challenge
-          </span>
-          <p className="text-[12px] leading-6 text-[#77766e] dark:text-[#9b9d95]">
-            {project.challenge}
-          </p>
-        </div>
-      )}
-
-      {!!project.contribution?.length && (
-        <div className="mb-6">
-          <span className="mb-3 block text-[9px] font-bold uppercase tracking-[0.14em] text-[#77766e] dark:text-[#9b9d95]">
-            What I contributed
-          </span>
-          <div className="grid gap-2.5">
-            {project.contribution.map((item) => (
-              <div
-                key={item}
-                className="flex items-start gap-2.5 text-[11px] leading-5"
+            return (
+              <button
+                key={`${image}-${index}`}
+                type="button"
+                onClick={() => setActiveIndex(index)}
+                aria-label={`Show ${project.title} screenshot ${index + 1}`}
+                aria-current={isActive ? "true" : undefined}
+                className={`relative h-14 w-20 shrink-0 cursor-pointer overflow-hidden border transition ${
+                  isActive
+                    ? "border-[#98ca45] ring-1 ring-[#98ca45] dark:border-[#d7fa66] dark:ring-[#d7fa66]"
+                    : "border-[#d8d4ca] opacity-60 hover:opacity-100 dark:border-[#363936]"
+                }`}
               >
-                <Check
-                  size={14}
-                  className="mt-0.5 shrink-0 text-[#98ca45] dark:text-[#d7fa66]"
-                />
-                <span>{item}</span>
-              </div>
-            ))}
-          </div>
-        </div>
-      )}
-
-      {!!project.outcomes?.length && (
-        <div className="mb-6 border border-[#98ca45]/35 bg-[#98ca45]/8 p-4 dark:border-[#d7fa66]/30 dark:bg-[#d7fa66]/5">
-          <span className="mb-3 block text-[9px] font-bold uppercase tracking-[0.14em] text-[#668d25] dark:text-[#d7fa66]">
-            Outcome
-          </span>
-          <div className="grid gap-2">
-            {project.outcomes.map((outcome) => (
-              <p key={outcome} className="text-[11px] leading-5">
-                {outcome}
-              </p>
-            ))}
-          </div>
-        </div>
-      )}
-
-      {project.privacyNote && (
-        <p className="mb-5 border-l-2 border-[#98ca45] pl-3 text-[10px] leading-5 text-[#77766e] dark:border-[#d7fa66] dark:text-[#9b9d95]">
-          {project.privacyNote}
-        </p>
-      )}
-
-      <div className="flex flex-wrap gap-2">
-        {project.tags.map((tag) => (
-          <span
-            key={tag}
-            className="border border-[#d8d4ca] px-2.5 py-1.5 text-[9px] text-[#77766e] dark:border-[#363936] dark:text-[#9b9d95]"
-          >
-            {tag}
-          </span>
-        ))}
-      </div>
-
-      {(project.liveUrl || project.repoUrl) && (
-        <div className="mt-6 flex flex-wrap items-center gap-5 border-t border-[#d8d4ca] pt-5 text-[11px] font-bold dark:border-[#363936]">
-          {project.liveUrl && (
-            <a
-              href={project.liveUrl}
-              target="_blank"
-              rel="noreferrer"
-              className="inline-flex items-center gap-1.5 transition hover:text-[#98ca45] dark:hover:text-[#d7fa66]"
-            >
-              Live demo <ArrowUpRight size={14} />
-            </a>
-          )}
-          {project.repoUrl && (
-            <a
-              href={project.repoUrl}
-              target="_blank"
-              rel="noreferrer"
-              className="inline-flex items-center gap-1.5 transition hover:text-[#98ca45] dark:hover:text-[#d7fa66]"
-            >
-              Source <Github size={14} />
-            </a>
-          )}
+                {!failed ? (
+                  <img
+                    src={image}
+                    alt=""
+                    loading="lazy"
+                    onError={() => markImageFailed(image)}
+                    className="h-full w-full object-cover"
+                  />
+                ) : (
+                  <span className="grid h-full w-full place-items-center bg-[#111411] text-[9px] font-bold text-[#d7fa66]">
+                    {String(index + 1).padStart(2, "0")}
+                  </span>
+                )}
+              </button>
+            );
+          })}
         </div>
       )}
     </div>
@@ -527,6 +628,7 @@ export default function App() {
     return window.localStorage.getItem("portfolio-theme") !== "light";
   });
   const [menuOpen, setMenuOpen] = useState(false);
+  const [expandedProject, setExpandedProject] = useState<string | null>("01");
 
   useEffect(() => {
     document.body.style.overflow = menuOpen ? "hidden" : "";
@@ -541,6 +643,10 @@ export default function App() {
   }, [dark]);
 
   const closeMenu = () => setMenuOpen(false);
+
+  const toggleProject = (number: string) => {
+    setExpandedProject((current) => (current === number ? null : number));
+  };
 
   return (
     <div
@@ -658,10 +764,11 @@ export default function App() {
             </h1>
 
             <div className="flex flex-col gap-8 border-t border-[#d8d4ca] pt-7 md:flex-row md:items-end md:justify-between dark:border-[#363936]">
-              <p className="m-0 max-w-[650px] text-[15px] leading-7 text-[#77766e] md:text-base dark:text-[#9b9d95]">
-                Full-stack developer specializing in Angular and .NET. I build
-                reliable business applications that turn complicated workflows
-                into clear, maintainable product experiences.
+              <p className="m-0 max-w-[620px] text-[15px] leading-7 text-[#77766e] md:text-base dark:text-[#9b9d95]">
+                Full-stack developer specializing in Angular and .NET, building
+                and maintaining business applications across frontend
+                interfaces, APIs, databases, reporting, integrations, and cloud
+                deployment workflows.
               </p>
 
               <div className="flex shrink-0 flex-wrap items-center gap-6">
@@ -673,7 +780,7 @@ export default function App() {
                 </a>
                 <a
                   className="inline-flex items-center gap-2 border-b border-[#171815] pb-1 text-xs font-bold dark:border-[#f3f0e8]"
-                  href="/assets/myke-xardan-cv.pdf"
+                  href="/assets/Myke_Xardan_Bognalon_CV.pdf"
                   download
                 >
                   Resume
@@ -751,20 +858,236 @@ export default function App() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 gap-5 lg:grid-cols-2">
-            {projects.map((project) => (
-              <article
-                key={project.number}
-                className={`group overflow-hidden border border-[#d8d4ca] bg-[#ebe8df] dark:border-[#363936] dark:bg-[#212420] ${
-                  project.featured
-                    ? "lg:col-span-2 lg:grid lg:grid-cols-[1.08fr_.92fr]"
-                    : ""
-                }`}
-              >
-                <ProjectVisual project={project} />
-                <ProjectDetails project={project} />
-              </article>
-            ))}
+          <div className="border-t border-[#d8d4ca] dark:border-[#363936]">
+            {projects.map((project) => {
+              const isOpen = expandedProject === project.number;
+
+              return (
+                <article
+                  key={project.number}
+                  className="border-b border-[#d8d4ca] dark:border-[#363936]"
+                >
+                  {/* Accordion header */}
+                  <button
+                    type="button"
+                    onClick={() => toggleProject(project.number)}
+                    aria-expanded={isOpen}
+                    className="
+            grid w-full cursor-pointer
+            grid-cols-[40px_1fr_32px]
+            items-center gap-4
+            py-6 text-left
+            transition
+            hover:px-2
+            md:grid-cols-[60px_1fr_auto_36px]
+            md:gap-6
+          "
+                  >
+                    <span className="text-[11px] text-[#77766e] dark:text-[#9b9d95]">
+                      {project.number}
+                    </span>
+
+                    <div>
+                      <div className="mb-1 flex flex-wrap items-center gap-2">
+                        <p className="text-[9px] uppercase tracking-[0.14em] text-[#77766e] dark:text-[#9b9d95]">
+                          {project.type}
+                        </p>
+                        {project.status && (
+                          <span className="border border-[#98ca45]/35 px-2 py-0.5 text-[8px] font-bold uppercase tracking-[0.1em] text-[#668d25] dark:border-[#d7fa66]/30 dark:text-[#d7fa66]">
+                            {project.status}
+                          </span>
+                        )}
+                      </div>
+
+                      <h3 className="text-lg font-bold tracking-[-0.04em] md:text-xl">
+                        {project.title}
+                      </h3>
+                    </div>
+
+                    <div className="hidden flex-wrap justify-end gap-2 md:flex">
+                      {project.tags.slice(0, 4).map((tag) => (
+                        <span
+                          key={tag}
+                          className="
+                  border border-[#d8d4ca]
+                  px-2.5 py-1
+                  text-[9px]
+                  text-[#77766e]
+                  dark:border-[#363936]
+                  dark:text-[#9b9d95]
+                "
+                        >
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+
+                    <ChevronDown
+                      size={18}
+                      className={`
+              transition-transform duration-300
+              ${
+                isOpen
+                  ? "rotate-180 text-[#98ca45] dark:text-[#d7fa66]"
+                  : "text-[#77766e] dark:text-[#9b9d95]"
+              }
+            `}
+                    />
+                  </button>
+
+                  {/* Expanded content */}
+                  {isOpen && (
+                    <div className="pb-10 md:pl-[84px]">
+                      <div className="grid gap-7 lg:grid-cols-[0.9fr_1.1fr] lg:gap-10">
+                        {/* Screenshot carousel */}
+                        <ProjectCarousel project={project} />
+
+                        {/* Details */}
+                        <div>
+                          <p className="mb-6 max-w-[620px] text-[14px] leading-7 text-[#77766e] dark:text-[#9b9d95]">
+                            {project.description}
+                          </p>
+
+                          {project.challenge && (
+                            <div className="mb-6">
+                              <p className="mb-2 text-[9px] font-bold uppercase tracking-[0.16em] text-[#98ca45] dark:text-[#d7fa66]">
+                                The challenge
+                              </p>
+
+                              <p className="text-[13px] leading-6 text-[#77766e] dark:text-[#9b9d95]">
+                                {project.challenge}
+                              </p>
+                            </div>
+                          )}
+
+                          {project.contribution &&
+                            project.contribution.length > 0 && (
+                              <div className="mb-6">
+                                <p className="mb-3 text-[9px] font-bold uppercase tracking-[0.16em] text-[#98ca45] dark:text-[#d7fa66]">
+                                  My contribution
+                                </p>
+
+                                <div className="space-y-2.5">
+                                  {project.contribution.map((item) => (
+                                    <div
+                                      key={item}
+                                      className="flex items-start gap-3"
+                                    >
+                                      <span className="mt-[7px] size-1.5 shrink-0 rounded-full bg-[#98ca45] dark:bg-[#d7fa66]" />
+
+                                      <p className="text-[13px] leading-6 text-[#77766e] dark:text-[#9b9d95]">
+                                        {item}
+                                      </p>
+                                    </div>
+                                  ))}
+                                </div>
+                              </div>
+                            )}
+
+                          {project.outcomes && project.outcomes.length > 0 && (
+                            <div className="mb-7">
+                              <p className="mb-3 text-[9px] font-bold uppercase tracking-[0.16em] text-[#98ca45] dark:text-[#d7fa66]">
+                                Outcomes
+                              </p>
+
+                              <div className="space-y-2.5">
+                                {project.outcomes.map((item) => (
+                                  <div
+                                    key={item}
+                                    className="flex items-start gap-3"
+                                  >
+                                    <Check
+                                      size={14}
+                                      className="mt-1 shrink-0 text-[#98ca45] dark:text-[#d7fa66]"
+                                    />
+
+                                    <p className="text-[13px] leading-6 text-[#77766e] dark:text-[#9b9d95]">
+                                      {item}
+                                    </p>
+                                  </div>
+                                ))}
+                              </div>
+                            </div>
+                          )}
+
+                          {/* Mobile tags */}
+                          <div className="mb-7 flex flex-wrap gap-2 md:hidden">
+                            {project.tags.map((tag) => (
+                              <span
+                                key={tag}
+                                className="border border-[#d8d4ca] px-2.5 py-1.5 text-[9px] text-[#77766e] dark:border-[#363936] dark:text-[#9b9d95]"
+                              >
+                                {tag}
+                              </span>
+                            ))}
+                          </div>
+
+                          {project.privacyNote && (
+                            <p className="mb-6 border-l-2 border-[#98ca45] pl-3 text-[10px] leading-5 text-[#77766e] dark:border-[#d7fa66] dark:text-[#9b9d95]">
+                              {project.privacyNote}
+                            </p>
+                          )}
+
+                          {/* Links / private project label */}
+                          <div className="flex flex-wrap items-center gap-5">
+                            {project.privateProject &&
+                              !project.liveUrl &&
+                              !project.repoUrl && (
+                                <span className="border border-[#d8d4ca] px-3 py-2 text-[9px] font-bold uppercase tracking-[0.12em] text-[#77766e] dark:border-[#363936] dark:text-[#9b9d95]">
+                                  Private enterprise system
+                                </span>
+                              )}
+
+                            {project.liveUrl && (
+                              <a
+                                href={project.liveUrl}
+                                target="_blank"
+                                rel="noreferrer"
+                                className="inline-flex items-center gap-2 text-xs font-bold"
+                              >
+                                Live Demo
+                                <ArrowUpRight
+                                  size={14}
+                                  className="text-[#98ca45] dark:text-[#d7fa66]"
+                                />
+                              </a>
+                            )}
+
+                            {project.repoUrl && (
+                              <a
+                                href={project.repoUrl}
+                                target="_blank"
+                                rel="noreferrer"
+                                className="inline-flex items-center gap-2 text-xs font-bold"
+                              >
+                                Source Code
+                                <Github
+                                  size={14}
+                                  className="text-[#98ca45] dark:text-[#d7fa66]"
+                                />
+                              </a>
+                            )}
+
+                            {project.caseStudyUrl && (
+                              <a
+                                href={project.caseStudyUrl}
+                                className="inline-flex items-center gap-2 text-xs font-bold"
+                              >
+                                Full Case Study
+                                <ArrowUpRight
+                                  size={14}
+                                  className="text-[#98ca45] dark:text-[#d7fa66]"
+                                />
+                              </a>
+                            )}
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  )}
+                </article>
+              );
+            })}
           </div>
         </section>
 
